@@ -5,37 +5,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Document</title>
     <style>
         .glow-wrapper {
             box-shadow: 1px 2px 3px 3px #C93B76;
             overflow: visible;
         }
+
+        #volume {
+            width: 20%;
+        }
+
+        input[type="range"] {
+            accent-color: rgb(223, 216, 216);
+            width: 5px;
+            height: 5px;
+        }
+
+        #volume::-webkit-slider-runnable-track {
+            background: linear-gradient(to right, #4D5562, #C93B76);
+            border-radius: 10px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        ul>li{
+            border-bottom: 2px solid #E5E7EB ;
+        }
+        .hl{
+            background-color:#ff91bfd1 ;
+        }
+      
+        @media screen and (max-width:400px) {
+            #searchicon{
+                display: none;
+            }
+        }
     </style>
 </head>
 
 <body style="margin: 0; padding: 0; box-sizing: border-box; background-image:url(bg.jpg)">
-    <div class=" h-screen w-full  flex items-center justify-center ">
-        <div class="box bg-[#212936] bg-opacity-70 sm:w-auto w-[45vw] flex flex-col gap-4 sm:p-5 p-3 rounded-3xl ">
-            <img src="dccl--javascript-music-player/cover-1.png" alt="img"
-                class="rounded-3xl sm:h-[400px] sm:w-[400px]">
+    <div class=" h-screen w-full  flex flex-col items-center gap-9 justify-center ">
+        <nav class="flex md:flex-row flex-col gap-4 bg-[#C93B76] bg-opacity-95 w-[45vw] p-4 justify-between items-center rounded-lg">
+            <div class="flex gap-4 items-center justify-center">
+                <i class="fa-solid fa-music fa-2xl text-[#E5E7EB]"></i>
+                <p class="text-[20px] text-[#E5E7EB] font-bold tracking-wide">Music Player</p>
+            </div>
+            <div class="relative flex-col items-center justify-center">
+                <i class="fa-solid fa-magnifying-glass text-[#4D5562] absolute sm:top-[7px] sm:right-[25px] top-[10px] right-[35px]" id="searchicon"></i>
+                <input type="text" placeholder="Search" class="sm:min-w-[90%] w-[70%] px-2 py-1 rounded-md placeholder:text-[16px] placeholder:text-gray-500  focus:outline-[#f9579a]  " id="searchinput">
+                <ul class="bg-white mt-1 rounded-lg p-2 font-medium text-[16px]  transition-all duration-100 hidden z-10 absolute" id="items">
+                </ul>
+            </div>
+
+        </nav>
+        <div
+            class="box bg-[#212936] bg-opacity-70 sm:w-auto w-[45vw]   flex flex-col gap-4 sm:p-5 p-3 rounded-3xl relative ">
+            <img src="dccl--javascript-music-player/cover-1.png" alt="img" class="rounded-3xl sm:h-[400px] sm:w-[400px]"
+                id="cover">
             <div class="flex flex-col gap-0 items-center text-center font-medium">
-                <p class="text-[#E5E7EB] sm:text-[1rem] text-[0.9rem] ">Lost in the City Lights</p>
-                <p class="sm:text-[0.75rem] text-[0.7rem] text-[#4D5562] font-medium">Author</p>
+                <p class="text-[#E5E7EB] sm:text-[1rem] text-[0.8rem] h-[3rem]  flex items-center p-1 justify-center text-center "
+                    id="songname">Lost in the City Lights</p>
+                <p class="sm:text-[0.75rem] text-[0.7rem] text-[#4D5562] font-medium" id="author">Author</p>
             </div>
 
             <div class="flex flex-col gap-2">
                 <div class="flex justify-between tracking-wide font-medium">
-                    <span class="sm:text-[0.625rem] text-[0.6rem] text-[#4D5562]">02:23</span>
-                    <span class="sm:text-[0.625rem] text-[0.6rem] text-[#4D5562]">03:15</span>
+                    <span class="sm:text-[0.625rem] text-[0.6rem] text-[#4D5562]"><span id="startmin">00</span> :
+                        <span id="startsec">00</span></span>
+                    <span class="sm:text-[0.625rem] text-[0.6rem] text-[#4D5562]"><span id="minutes">00</span> :
+                        <span id="seconds">00</span></span>
                 </div>
                 <div class="bar w-full rounded-full bg-[#E5E7EB] h-1">
-                    <div class="glow-wrapper rounded-full max-w-[0%]">
+                    <div class="glow-wrapper rounded-full " style="max-width: 0%;transition: all 0.3s linear;">
                     </div>
                 </div>
             </div>
-            <div class="flex items-center justify-center sm:gap-6 gap-2 sm:p-2 p-1 sm:mt-3 mt-2">
-                <button class="sm:block hidden ">
+
+            <div class="flex items-center justify-center sm:gap-6 gap-2 sm:p-2 p-1 sm:mt-3 mt-2 ">
+                <button
+                    class="sm:block hidden transition-all duration-200 rounded-lg hover:bg-black hover:bg-opacity-20 hover:shadow hover:shadow-black "
+                    data-act="backward">
                     <svg width="35" height="35" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M17.8136 14.2517L23.6953 10.9841C25.0284 10.2435 26.6666 11.2074 26.6666 12.7324V19.2676C26.6666 20.7926 25.0284 21.7566 23.6953 21.016L17.8136 17.7483C16.442 16.9863 16.442 15.0137 17.8136 14.2517Z"
@@ -46,7 +97,9 @@
                             stroke-linecap="round" />
                     </svg>
                 </button>
-                <button class="sm:hidden ">
+                <button
+                    class="sm:hidden rounded-lg transition-all duration-200 hover:bg-black hover:bg-opacity-20 hover:shadow hover:shadow-black "
+                    data-act="backward">
                     <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M17.8136 14.2517L23.6953 10.9841C25.0284 10.2435 26.6666 11.2074 26.6666 12.7324V19.2676C26.6666 20.7926 25.0284 21.7566 23.6953 21.016L17.8136 17.7483C16.442 16.9863 16.442 15.0137 17.8136 14.2517Z"
@@ -59,14 +112,18 @@
                 </button>
 
                 <button
-                    class=" bg-[#C93B76]  sm:w-[55px] sm:h-[55px] w-[25px] h-[25px]  rounded-full flex items-center justify-center">
+                    class=" bg-[#C93B76] transition-all duration-200 hover:bg-[#f9579a] hover:shadow-md hover:shadow-[#C93B76]  sm:w-[55px] sm:h-[55px] w-[25px] h-[25px]  rounded-full flex items-center justify-center"
+                    id="playbtn" data-act="play">
+                    <audio id="song"></audio>
                     <svg width="35" height="35" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M21.941 14.244L14.119 10.236C12.686 9.50176 11 10.5696 11 12.2115V19.7885C11 21.4304 12.686 22.4982 14.119 21.764L21.941 17.756C23.353 17.0325 23.353 14.9675 21.941 14.244Z"
                             fill="#E5E7EB" />
                     </svg>
                 </button>
-                <button class="sm:block hidden">
+                <button
+                    class="sm:block hidden transition-all duration-200 rounded-lg hover:bg-black hover:bg-opacity-20 hover:shadow hover:shadow-black "
+                    data-act="forward">
                     <svg width="35" height="35" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M14.1864 14.2517L8.30466 10.9841C6.9716 10.2435 5.33337 11.2074 5.33337 12.7324V19.2676C5.33337 20.7926 6.9716 21.7566 8.30466 21.016L14.1864 17.7483C15.558 16.9863 15.558 15.0137 14.1864 14.2517Z"
@@ -77,7 +134,9 @@
                             stroke-linecap="round" />
                     </svg>
                 </button>
-                <button class="sm:hidden">
+                <button
+                    class="sm:hidden rounded-lg transition-all duration-200 hover:bg-black hover:bg-opacity-20 hover:shadow hover:shadow-black"
+                    data-act="forward">
                     <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M14.1864 14.2517L8.30466 10.9841C6.9716 10.2435 5.33337 11.2074 5.33337 12.7324V19.2676C5.33337 20.7926 6.9716 21.7566 8.30466 21.016L14.1864 17.7483C15.558 16.9863 15.558 15.0137 14.1864 14.2517Z"
@@ -88,10 +147,17 @@
                             stroke-linecap="round" />
                     </svg>
                 </button>
+                <input type="range" name="volume" id="volume" min="0" max="1" value="1" step="0.01"
+                    class="sm:absolute sm:right-[20px] ">
             </div>
+
+
+
+
 
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
