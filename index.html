@@ -19,8 +19,6 @@
 
         input[type="range"] {
             accent-color: rgb(223, 216, 216);
-            width: 5px;
-            height: 5px;
         }
 
         #volume::-webkit-slider-runnable-track {
@@ -45,9 +43,12 @@
             background-color: #ff91bfd1;
         }
 
-        @media screen and (max-width:400px) {
+        @media screen and (max-width:500px) {
             #searchicon {
                 display: none;
+            }
+            #searchinput{
+                width: 70%;  
             }
         }
     </style>
@@ -62,10 +63,10 @@
                 <p class="text-[20px] text-[#E5E7EB] font-bold tracking-wide">Music Player</p>
             </div>
             <div class="relative flex-col items-center justify-center">
-                <i class="fa-solid fa-magnifying-glass text-[#4D5562] absolute sm:top-[7px] sm:right-[25px] top-[10px] right-[35px]"
+                <i class="fa-solid fa-magnifying-glass text-[#4D5562] absolute sm:top-[7px] sm:right-[25px]  top-[10px] right-[35px]"
                     id="searchicon"></i>
                 <input type="text" placeholder="Search"
-                    class="sm:min-w-[90%] w-[70%] px-2 py-1 rounded-md placeholder:text-[16px] placeholder:text-gray-500  focus:outline-[#f9579a]  "
+                    class="sm:min-w-[90%]  px-2 py-1 rounded-md placeholder:text-[16px] placeholder:text-gray-500  focus:outline-[#f9579a]  "
                     id="searchinput">
                 <ul class="bg-white mt-1 rounded-lg p-2 font-medium text-[16px]  transition-all duration-100 hidden z-10 absolute"
                     id="items">
