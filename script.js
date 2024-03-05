@@ -247,5 +247,5 @@ function playlist(){
     isclicked=true;
     setMusic(index);
     ul.classList.replace("block","hidden");
-    searchinput.value=" ";
+    searchinput.value="";
 }
