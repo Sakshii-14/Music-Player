@@ -206,6 +206,7 @@ function handlechange(e){
     player.volume=e.target.value;
 }
 let searchinput=document.querySelector("#searchinput");
+let ul=document.querySelector("#items");
 searchinput.addEventListener("keyup",searchValue);
 function searchValue(){
     console.log(searchinput.value);
@@ -213,7 +214,7 @@ function searchValue(){
     let filteredarray=songsarray.filter((elem)=>{
        if(elem.preview_url!==null){
         let str= elem.album.name;
-        return str.match(regex)
+        return str.matchAll(regex)
        }
        
     })
@@ -222,7 +223,7 @@ function searchValue(){
         return `
         <li>${name}</li>`;
     })
-    let ul=document.querySelector("#items");
+    
     if(searchinput.value!=='')
     {
         console.log(html);
@@ -244,4 +245,6 @@ function playlist(){
     current=index;
     isclicked=true;
     setMusic(index);
+    ul.classList.replace("block","hidden");
+    searchinput.value=" ";
 }
