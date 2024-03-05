@@ -37,8 +37,19 @@ let songsarray = [];
     songsarray = [...(songdata.tracks.items)];
     console.log(songsarray);
 
+    let cover = document.querySelector("#cover");
+    cover.src = `${songsarray[0].album.images[1].url}`;
 
+    let songname = document.querySelector("#songname");
+    songname.innerHTML = `${songsarray[0].album.name}`
 
+    let author = document.querySelector("#author");
+    let artistsarray = [...(songsarray[current].artists)];
+    let newarr = artistsarray.map(elem => {
+        return elem.name
+    })
+    author.innerHTML = newarr.join(' , ');
+    
     let buttons = document.querySelectorAll("button");
     buttons.forEach((elem) => {
         elem.addEventListener("click", () => {
