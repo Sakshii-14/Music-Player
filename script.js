@@ -194,13 +194,14 @@ function getDetails(current) {
     console.log(songsarray[current].album.images);
     console.log(songsarray[current].album.name);
 }
-let volume=document.querySelector("#volume");
+
 let volmouse=false;
 let vol=0;
-volume.addEventListener("mousedown",()=>volmouse=true)
-volume.addEventListener("mouseup",()=>volmouse=false)
-volume.addEventListener("mousemove",(e)=>volmouse && handlechange(e))
-volume.addEventListener("change",handlechange)
+let volumes=document.querySelectorAll(".volumes");
+volumes.forEach(volume=>volume.addEventListener("mousedown",()=>volmouse=true))
+volumes.forEach(volume=>volume.addEventListener("mouseup",()=>volmouse=false))
+volumes.forEach(volume=>volume.addEventListener("mousemove",(e)=>volmouse && handlechange(e)))
+volumes.forEach(volume=>volume.addEventListener("change",handlechange))
 function handlechange(e){
    
     player.volume=e.target.value;
