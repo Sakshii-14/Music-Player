@@ -13,7 +13,7 @@
             overflow: visible;
         }
 
-        #volume {
+        #volume,#volume1 {
             width: 20%;
             border-radius: 50%;
         }
@@ -30,8 +30,20 @@
             height: 17px;
             cursor: pointer;
         }
+        #volume1::-webkit-slider-runnable-track {
+            background: linear-gradient(to right, #4D5562, #C93B76);
+            border-radius: 10px;
+            height: 17px;
+            cursor: pointer;
+        }
 
         #volume::-moz-range-track {
+            background: linear-gradient(to right, #4D5562, #C93B76);
+            border-radius: 10px;
+            height: 10px;
+            cursor: pointer;
+        }
+        #volume1::-moz-range-track {
             background: linear-gradient(to right, #4D5562, #C93B76);
             border-radius: 10px;
             height: 10px;
@@ -52,6 +64,12 @@
             }
             #searchinput{
                 width: 70%;  
+            }
+            #volume1{
+                display: block;
+            }
+            #volume{
+                display: none;
             }
         }
     </style>
@@ -100,6 +118,7 @@
             </div>
 
             <div class="flex items-center justify-center sm:gap-6 gap-2 sm:p-2 p-1 sm:mt-3 mt-2 ">
+              
                 <button
                     class="sm:block hidden transition-all duration-200 rounded-lg hover:bg-black hover:bg-opacity-20 hover:shadow hover:shadow-black "
                     data-act="backward">
@@ -163,8 +182,10 @@
                             stroke-linecap="round" />
                     </svg>
                 </button>
+                <input type="range" name="volume" id="volume1" min="0" max="1" value="1" step="0.01"
+                class=" -rotate-90 hidden ">
                 <input type="range" name="volume" id="volume" min="0" max="1" value="1" step="0.01"
-                    class="sm:absolute sm:right-[20px] ">
+                    class="sm:absolute sm:right-[20px] block ">
             </div>
 
 
