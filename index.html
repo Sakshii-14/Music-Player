@@ -30,15 +30,23 @@
             cursor: pointer;
         }
 
-        ul>li{
-            border-bottom: 2px solid #E5E7EB ;
+        #volume::-moz-range-track {
+            background: linear-gradient(to right, #4D5562, #C93B76);
+            border-radius: 10px;
+            height: 15px;
+            cursor: pointer;
         }
-        .hl{
-            background-color:#ff91bfd1 ;
+
+        ul>li {
+            border-bottom: 2px solid #E5E7EB;
         }
-      
+
+        .hl {
+            background-color: #ff91bfd1;
+        }
+
         @media screen and (max-width:400px) {
-            #searchicon{
+            #searchicon {
                 display: none;
             }
         }
@@ -47,23 +55,27 @@
 
 <body style="margin: 0; padding: 0; box-sizing: border-box; background-image:url(bg.jpg)">
     <div class=" h-screen w-full  flex flex-col items-center gap-9 justify-center ">
-        <nav class="flex md:flex-row flex-col gap-4 bg-[#C93B76] bg-opacity-95 w-[45vw] p-4 justify-between items-center rounded-lg">
+        <nav
+            class="flex md:flex-row flex-col gap-4 bg-[#C93B76] bg-opacity-95 w-[45vw] p-4 justify-between items-center rounded-lg">
             <div class="flex gap-4 items-center justify-center">
                 <i class="fa-solid fa-music fa-2xl text-[#E5E7EB]"></i>
                 <p class="text-[20px] text-[#E5E7EB] font-bold tracking-wide">Music Player</p>
             </div>
             <div class="relative flex-col items-center justify-center">
-                <i class="fa-solid fa-magnifying-glass text-[#4D5562] absolute sm:top-[7px] sm:right-[25px] top-[10px] right-[35px]" id="searchicon"></i>
-                <input type="text" placeholder="Search" class="sm:min-w-[90%] w-[70%] px-2 py-1 rounded-md placeholder:text-[16px] placeholder:text-gray-500  focus:outline-[#f9579a]  " id="searchinput">
-                <ul class="bg-white mt-1 rounded-lg p-2 font-medium text-[16px]  transition-all duration-100 hidden z-10 absolute" id="items">
+                <i class="fa-solid fa-magnifying-glass text-[#4D5562] absolute sm:top-[7px] sm:right-[25px] top-[10px] right-[35px]"
+                    id="searchicon"></i>
+                <input type="text" placeholder="Search"
+                    class="sm:min-w-[90%] w-[70%] px-2 py-1 rounded-md placeholder:text-[16px] placeholder:text-gray-500  focus:outline-[#f9579a]  "
+                    id="searchinput">
+                <ul class="bg-white mt-1 rounded-lg p-2 font-medium text-[16px]  transition-all duration-100 hidden z-10 absolute"
+                    id="items">
                 </ul>
             </div>
 
         </nav>
         <div
             class="box bg-[#212936] bg-opacity-70 sm:w-auto w-[45vw]   flex flex-col gap-4 sm:p-5 p-3 rounded-3xl relative ">
-            <img  alt="img" class="rounded-3xl sm:h-[400px] sm:w-[400px]"
-                id="cover">
+            <img alt="img" class="rounded-3xl sm:h-[400px] sm:w-[400px]" id="cover">
             <div class="flex flex-col gap-0 items-center text-center font-medium">
                 <p class="text-[#E5E7EB] sm:text-[1rem] text-[0.8rem] h-[3rem]  flex items-center p-1 justify-center text-center "
                     id="songname">Lost in the City Lights</p>
